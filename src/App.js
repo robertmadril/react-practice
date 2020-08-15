@@ -6,16 +6,27 @@ import './App.css';
 
 class App extends Component {
   state = {
-    chartData: chartObj
+    chartData: chartObj,
+    name: "Robert",
+    greeting: "Henlo",
+    datesArr: ""
   }
 
-  componentDidMount() {
-    console.log(this.state)
+  getMonthDates = (year, month) => {
+    let dates = new Date(year, month, 0).getDate();
+
+    this.setState({datesArr: dates})
+
+    return;
+  }
+
+  logState = () => {
+    console.log(this.state);
   }
 
   render() {
     return (
-      <div className='container'>
+      <div className='container' onClick = {() => {this.getMonthDates(2020, 2)}}>
         {(this.state.chartData.length > 0) ?
           (
             <List>
@@ -27,14 +38,14 @@ class App extends Component {
               ))}
             </List>) :
           <h2 className="say-my-name">
-            THANK YOU FOR CLEANING THE SHOWER, IVY
+            {this.state.greeting}
           </h2>
         }
         <br />
         <br />
         <br />
         <h1 className="say-my-name">
-          Love u
+          {this.state.name}
         </h1>
       </div>
     );
